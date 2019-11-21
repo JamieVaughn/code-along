@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bootstrap Portfolio</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-theme.min">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Montserrat|Montserrat+Alternates|Open+Sans" rel="stylesheet"> 
+
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <!-- start the nav bar! The Navbar with bootsrap is responsive, so to group icons you just need to create a navbar-toggle (code below) to group items when windows is resized-->
+            <div id="myNavBar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <!-- always create a navbar-brand!-->
+                    <a href="#" class="navbar-brand">
+                        My Portfolio Site
+                    </a>
+                    <!-- group nav content -->
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling: calling the data-target as navHeaderCollapse to send the items to the navbar-toggle (scroll up to see the code) -->
+                    <div class="collapse navbar-collapse navHeaderCollapse text-center">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a rel="nofollow" rel="noreferrer" href="#about"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+         About</a></li>
+                                <!-- creating a dropdown menu for the portfolio option same as with the navbar-toggle but instead use dropdown-toggle class!-->
+                                <li class="dropdown">
+                                    <a rel="nofollow" rel="noreferrer" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-th-large" aria-hidden="true"></i>
+         Portfolio <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li class="text-center"><a rel="nofollow" rel="noreferrer" href="#web"><i class="fa fa-code" aria-hidden="true"></i> Front End Web Design</a></li>
+                                        <li class="text-center"><a rel="nofollow" rel="noreferrer" href="#photo"><i class="fa fa-picture-o" aria-hidden="true"></i> Photography</a></li>
+                                    </ul>
+                                </li>
+                            <li><a rel="nofollow" rel="noreferrer" href="#contact"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+         Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+        <!-- Jumbotron!!! aka Splash Image-->
+        <a rel="nofollow" rel="noreferrer" name="about"></a>
+        <section id="portfolio">
+            <div id="jumbo" class="container jumbotron jumbotroncontact">
+                    <div id="font" class="row">
+                        <div class="col-lg-12">
+                                <h1><b>My Name</b></h1>
+                                <p>Frontend Developer</p>
+                                    
+                                    <div id="btn-group-toggle" class="btn-group">
+                                        <a rel="nofollow" rel="noreferrer" href="https://github.com/" target="blank_" class="btn btn-default btn-lg"><i class="fa fa-github"></i> GitHub</a>
+                                        <a rel="nofollow" rel="noreferrer" href="https://codepen.io/" target="blank_" class="btn btn-default btn-lg"><i class="fa fa-camera-retro"></i> Codepen</a>
+                                        <a rel="nofollow" rel="noreferrer" href="https://www.linkedin.com/" target="blank_" class="btn btn-default btn-lg"><i class="fa fa-linkedin"></i> LinkedIn</a>
+                                    </div>
+                                    
+                        </div>
+                    </div>
+            </div>
+        </section>
+        
+        <!--Creating a section for the portfolio web design -->
+        <hr> <!-- thematic Break -->
+        <section id="fontwebphoto" class="container">
+            <div class"row">
+              <div class="col-md-3 text-left hidden-sm hidden-xs">
+                <h2><b>Front End Web Design</b></h2>
+              </div>
+                <div class="col-xs-12 col-md-9">
+                  <h2 class="visible-xs visible-sm"><b>Front End Web Design</b></h2>
+                              <div class="row text-center">
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="card card-default">
+                                        <div class="card-body">
+                                            <img class="img-responsive" src="https://via.placeholder.com/50" alt="Project 1 image">
+                                            <br><p>Blog Pages</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a rel="nofollow" rel="noreferrer"class="btn btn-default btn-block" href="https://codepen.io/" target="blank_">
+                                                Check it out <i class="fa fa-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="card card-default">
+                                        <div class="card-body">
+                                            <img class="img-responsive" src="https://via.placeholder.com/50" alt="Project 2 image">
+                                            <br><p>Image Gallery</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a rel="nofollow" rel="noreferrer"class="btn btn-default btn-block" href="https://codepen.io/" target="blank_">
+                                                Check it out <i class="fa fa-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="card card-default">
+                                        <div class="card-body">
+                                            <img class="img-responsive" src="https://via.placeholder.com/50" alt="Project 3 image">
+                                            <br><p>Color Game!</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a rel="nofollow" rel="noreferrer"class="btn btn-default btn-block" href="https://codepen.io/" target="blank_">
+                                                Check it out <i class="fa fa-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <!--second row to add more websites-->
+    
+                </div>
+            </div>
+        
+        </section> <!-- end of the web design section -->
+          
+                                  
+     
+        <!--End of Project Section!-->
+        
+        <!--Contact Section-->
+        <a rel="nofollow" rel="noreferrer" name="contact"></a>
+        <hr> <!-- thematic Break -->
+        <section>
+            <div id="jumbo" class="container jumbotron jumbotroncontact">
+                    <div class="row">
+                        <div class="col-lg-12">
+                                <h2 id="fontcontact"><b>Connect with me</b></h2>
+                                
+                                    <!--new ID for changing buttons to vertical, since it can only used a unique ID..-->
+                                    
+                                    <div id="btn-group-toggle2" class="btn-group">
+                                        <a rel="nofollow" rel="noreferrer" href="https://github.com/" target="blank_" class="btn btn-default btn-lg"><i class="fa fa-github"></i> GitHub</a>
+                                        <a rel="nofollow" rel="noreferrer" href="https://codepen.io/" target="blank_" class="btn btn-default btn-lg"><i class="fa fa-camera-retro"></i> Codepen</a>
+                                        <a rel="nofollow" rel="noreferrer" href="https://www.linkedin.com/" target="blank_" class="btn btn-default btn-lg"><i class="fa fa-linkedin"></i> LinkedIn</a>
+                                        <a rel="nofollow" rel="noreferrer" href="https://www.freecodecamp.org/" target="blank_" class="btn btn-default btn-lg"><i class="fa fa-free-code-camp"></i> FreeCodeCamp</a>
+                                    </div>
+                                  
+                                    
+                                    
+                        </div>
+                    </div>
+            </div>
+        </section>
+        <!--End of contact section-->
+          
+        <!--sticky footer-->
+        <div class="navbar navbar-default"> <!--navbar-fixed-bottom-->
+                <div class="container">
+                    Add Contact Form Here
+                    <!--if you want to add links added with a href then add a class of btn to specify as a botton!-->
+                </div>
+        </div>
+        
+        
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+</body>
+</html>

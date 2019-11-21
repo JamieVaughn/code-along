@@ -1,0 +1,36 @@
+.jumbotron {
+    background: url('https://drive.google.com/uc?id=0ByslKxX1WPM3aE9qdV96ZVNlVlE') no-repeat center center;
+    text-align: center;
+    background-color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 50px;
+    margin-bottom: 8px;
+    background-size: cover;
+    height: 100vh;
+  }
+  #jumbo {
+    width: 100%;
+  }
+  .jumbotroncontact {
+    background: url('https://images.unsplash.com/photo-1541450805268-4822a3a774ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+    text-align: center;
+    background-color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 50px;
+    margin-bottom: 8px;
+    background-size: cover;
+    height: 250px;
+  }
+  #font {
+    font-family: 'Open Sans', sans-serif;
+  }
+  #fontwebphoto {
+    font-family: 'Montserrat Alternates', sans-serif;
+  }
+  #fontcontact {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+  }
+  
