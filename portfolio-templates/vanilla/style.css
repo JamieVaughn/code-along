@@ -1,6 +1,43 @@
 /* Typography imported from Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:200,400');
-
+html {
+    scroll-behavior: smooth;
+}
+body {
+    padding: none;
+    margin: 0;
+    box-sizing: border-box;
+}
+nav {
+    position: fixed;
+    top: 0;
+    width:100%;
+    z-index: 99;
+}
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+    background: burlywood;
+    color: white;
+    align-items: center;
+    margin: 0;
+    height: 75px;
+}
+nav ul li {
+    list-style: none;
+    /* color: grey; */
+}
+nav ul li a {
+    text-decoration: none;
+    color: inherit;
+    margin: 0 1rem;
+}
+nav ul li:nth-of-type(1) {
+    margin-right: auto;
+}
+.hero {
+    margin-top: 75px;
+}
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', serif;
   font-size: 3em;
