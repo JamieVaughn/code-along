@@ -7,22 +7,64 @@
     <title>DOM API Challenge</title>
 </head>
 <body>
-    
-
-
+    <span></span>
+    <div></div>
+    <form style="background: #eee;"></form>
     <script>
         // Challenge #1:  Use the DOM API to create a simple contact form
         // It should have a header with a title of "Contact Me"
-        //It should have an input inside a label 
-        // It should have a button 
-        
+        //It should have an input inside a label (Bonus: add a "for" attribute and an "id" attribute)
+        // It should have a button with Text of "Submit"
+        let h1 = document.createElement('h1');
+        let heading = document.createTextNode('Contact Me');
+        h1.append(heading);
 
-        //CHallenge #2: Listen for an click event on the button and display the input value
+        let label = document.createElement('label');
+        let input = document.createElement('input');
+        label.append(input);
+        label.for = 'contact';
+        input.id = 'contact';
+
+        let button = document.createElement('button');
+        let buttonText = document.createTextNode('Submit');
+        button.append(buttonText);
+
+
+        let fragment = document.createDocumentFragment();
+        fragment.append(h1, label, button);
+
+        document.body.append(fragment);
+
+        //Challenge #2: Listen for an click event on the button and display the input value
         // Use .addEventListener on the button
-        //Add an empty output element
-        //When the button is clicked take the value in the input and put it in the output
+        // Add an empty output element
+        // When the button is clicked take the value in the input and put it in the output
+        let output = document.createElement('output');
+        document.body.append(output);
+        button.addEventListener('click', function() {
+            output.innerText = input.value;
+        })
+        
+        //Shortcut: Use .innerHTML
+        let container = document.querySelector('div');
+        let formContent= "<h1>Contact Me</h1><label for='contact'><input id='contact'/></label><button>Submit</button></form>";
+        container.innerHTML = formContent;
 
-    
+        // What are the trade offs between these two approaches?
+        // Performance: 
+        // Security: innerHTML is susceptible to XSS
+        // let XSSAttack = "<script>alert('hi')\<\/script>";
+        // form.append(XSSAttack);
+        // document.querySelector('span').innerHTML = XSSAttack;
+        // button.addEventListener('keypress', function(){
+        //     output.innerHTML = "<img src='x' onerror='alert(`I hacked you`)'>";
+        // })
+
+
+        //Challenge #3: Use Template String Literals to create a new form
+        // The form should look hae an h1, an input inside a label and a button
+        // But this time use Interpolation to fill out the text inside each element
+        // You'll have to save the text in a few variables and then reference them using the interpolation syntax
         
     </script>
 </body>

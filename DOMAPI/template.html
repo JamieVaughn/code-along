@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Template String Literals</title>
+</head>
+<body>
+    <div action="">
+        <h1>My Stamping machine</h1>
+        <label for="name">Name: <input id="name" type="text"></label>
+        <label for="occupation">Occupation: <input id="occupation" type="text"></label>
+        <label for="hobby">Hobbies: <input id="hobby" type="text"></label>
+        <label for="color">Favorite Color: <input id="color" type="color"></label>
+        <button>Stamp it!</button>
+    </div>
+</body>
+<script>
+
+    document.querySelector('button').addEventListener('click', function(){
+        console.log("stamped!!")
+        let output = ``
+        document.body.append(output)
+    })
+
+</script>
+</html>
