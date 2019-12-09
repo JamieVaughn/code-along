@@ -5,23 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Template String Literals</title>
+    <style>
+        div.form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #ddd;
+            border: 1px solid steelblue;
+            border-radius: 1rem;
+            padding: 1rem;
+            max-width: 320px;
+        }
+        label {
+            display: grid;
+            width: 80%;
+        }
+    </style>
 </head>
 <body>
-    <div action="">
-        <h1>My Stamping machine</h1>
-        <label for="name">Name: <input id="name" type="text"></label>
+    <div class='form'>
+        <h1>My Stamping Machine</h1>
+        <label for="name"><span>Name:</span> <input id="name" type="text"></label>
         <label for="occupation">Occupation: <input id="occupation" type="text"></label>
         <label for="hobby">Hobbies: <input id="hobby" type="text"></label>
         <label for="color">Favorite Color: <input id="color" type="color"></label>
+        <label for="dob">Your Date of Birth: <input id="dob" type="date"></label>
+        <label for="terms">Agree to terms/conditions: <input id="terms" type="checkbox"></label>
         <button>Stamp it!</button>
     </div>
+    <output></output>
 </body>
 <script>
-
+    
     document.querySelector('button').addEventListener('click', function(){
         console.log("stamped!!")
-        let output = ``
-        document.body.append(output)
+        let name = document.querySelector('#name').value
+        let occupation = document.querySelector('#occupation').value
+        let hobby = document.querySelector('#hobby').value
+        let color = document.querySelector('#color').value
+        let dob = document.querySelector('#dob').value
+        let terms = document.querySelector('#terms').checked
+        let timestamp = new Date()
+        let output = `
+            <div>Name: ${name}</div>
+            <div>Occupation: ${occupation}</div>
+            <div>Hobby: ${hobby}</div>
+            <div>${(Date.now() - new Date(dob))/1000/60/60/24/365}</div> 
+            <div>Favoratie Color: ${color}</div>
+            <div>Agreed to terms: ${terms}</div>
+            <div>Form filled on: ${timestamp}</div>
+        `
+        // for dob bonus: calculate their age ${(Date.now() - new Date(dob))/1000/60/60/24/365} || 31536000000
+        document.querySelector('output').innerHTML += output // then use +=
     })
 
 </script>

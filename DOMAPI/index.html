@@ -22,7 +22,7 @@
         let label = document.createElement('label');
         let input = document.createElement('input');
         label.append(input);
-        label.for = 'contact';
+        label.setAttribute('for', 'contact');
         input.id = 'contact';
 
         let button = document.createElement('button');
@@ -35,6 +35,8 @@
 
         document.body.append(fragment);
 
+        // document.body.innerHTML = "<h1>Contact me</h1><lable for='contact'><input id='contact' type='text'></label><button>Submit</button>"
+
         //Challenge #2: Listen for an click event on the button and display the input value
         // Use .addEventListener on the button
         // Add an empty output element
@@ -46,9 +48,9 @@
         })
         
         //Shortcut: Use .innerHTML
-        let container = document.querySelector('div');
-        let formContent= "<h1>Contact Me</h1><label for='contact'><input id='contact'/></label><button>Submit</button></form>";
-        container.innerHTML = formContent;
+        // let container = document.querySelector('div');
+        // let formContent= "<h1>Contact Me</h1><label for='contact'><input id='contact'/></label><button>Submit</button>";
+        // container.innerHTML = formContent;
 
         // What are the trade offs between these two approaches?
         // Performance: 
