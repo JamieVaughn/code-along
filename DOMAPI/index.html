@@ -48,19 +48,19 @@
         })
         
         //Shortcut: Use .innerHTML
-        // let container = document.querySelector('div');
-        // let formContent= "<h1>Contact Me</h1><label for='contact'><input id='contact'/></label><button>Submit</button>";
-        // container.innerHTML = formContent;
+        let container = document.querySelector('div');
+        let formContent= "<h1>Contact Me</h1><label for='contact'><input id='contact'/></label><button>Submit</button>";
+        container.innerHTML = formContent;
 
         // What are the trade offs between these two approaches?
         // Performance: 
         // Security: innerHTML is susceptible to XSS
-        // let XSSAttack = "<script>alert('hi')\<\/script>";
+        let XSSAttack = "<script>alert('hi')\&lt;\/script>";
         // form.append(XSSAttack);
-        // document.querySelector('span').innerHTML = XSSAttack;
-        // button.addEventListener('keypress', function(){
-        //     output.innerHTML = "<img src='x' onerror='alert(`I hacked you`)'>";
-        // })
+        document.querySelector('span').innerHTML = XSSAttack;
+        button.addEventListener('keypress', function(){
+            output.innerHTML = "<img src='x' onerror='alert(`I hacked you`)'>";
+        })
 
 
         //Challenge #3: Use Template String Literals to create a new form
