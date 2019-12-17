@@ -19,7 +19,7 @@ let operations = document.querySelector('.operations');
         // update the output element to display the user input
 numbers.addEventListener('click', function(e) {
     if(e.target.classList[0] == 'num'){
-        bucket.push(e.target.classList[1]);
+        bucket.push(Number(e.target.classList[1]));
         display.innerText = arrToString(bucket)
     }
 });
@@ -41,9 +41,10 @@ operations.addEventListener('click', function(e) {
         display.innerText = arrToString(bucket)
     }else if(e.target.classList[0] == 'eq') {
         let opIndex = bucket.indexOf(bucket.find(i => typeof i === 'string'));
-        let num1 = bucket.slice(0, opIndex).join('');
-        let num1 = bucket.slice(opIndex+1, bucket.length).join('');
-        let result = equalsHandler(op, Number(num1), number(num2));
+        let num1 = Number(bucket.slice(0, opIndex).join(''));
+        let num2 = Number(bucket.slice(opIndex+1, bucket.length).join(''));
+        console.log(bucket, opIndex, num1, num2)
+        let result = equalsHandler(bucket[opIndex], num1, num2);
         display.innerText = result;
         bucket.length = 0;
     } else {
