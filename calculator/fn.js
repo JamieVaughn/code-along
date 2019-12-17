@@ -4,3 +4,5 @@ function convertTemperature(temp) {
     let num = Number(temp.slice(0, index))
     return bool ? (num - 32) / 1.8 : num * 1.8 + 32;
   }
+
+  convertTemperature('546C')
