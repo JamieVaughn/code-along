@@ -44,7 +44,7 @@ function equalsHandler(op, first, second){
 
 
 // write a function that accepts an array of many single digits
-// and outputs them as a string representing one number
+// and outputs them as a string representing one value or expression
 function arrToString(arr) {
     return arr.join('').toString();
 } 
