@@ -1,0 +1,33 @@
+#output {
+    display: flex;
+  }
+  .card {
+    border: 1px solid steelblue;
+    border-radius: 1rem;
+    margin: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .card h1 {
+    text-align: center;
+    margin: 0 0 0.5rem 0;
+    padding: 1rem;
+    border-radius: 1rem 1rem 0 0;
+    background: #ddd;
+  }
+  .card h1.marked {
+    color: crimson;
+  }
+  .card img {
+    width: 100px;
+    margin: 0 auto;
+  }
+  .card span {
+    position: absolute;
+    bottom: 0;
+    right: 0.5rem;
+    font-size: 0.5rem;
+    color: #777;
+  }
+  
