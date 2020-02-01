@@ -52,7 +52,7 @@
     const totalYears = inventors.reduce((total, inventor) => {
       return total + (inventor.passed - inventor.year);
     }, 0);
-    console.log(totalYears);
+    console.log('total years: ', totalYears);
 
     // 5. Sort the inventors by years lived
     const oldest = inventors.sort(function(a, b) {
@@ -60,13 +60,13 @@
       const nextInventor = b.passed - b.year;
       return lastInventor > nextInventor ? -1 : 1;
     });
-    console.table(oldest);
+    console.table('oldest', oldest);
 
     // 6. create a list of inventors that lived for some period in the 1800s
     const pplIn1800 = inventors.filter(i => {
         return `${i.year}`.slice(0,2) === '18' || `${i.passed}`.slice(0,2) === '18'
     })
-    console.table(pplIn1800)
+    console.table('1800:', pplIn1800)
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
@@ -87,7 +87,7 @@
       obj[item]++;
       return obj;
     }, {});
-    console.log(transportation);
+    console.log('transportation:', transportation);
 
 
     // Some, Every checks:
@@ -107,11 +107,11 @@
     });
 
     const isAdult2 = friends.some(person => ((new Date()).getFullYear()) - person.year >= 19);
-    console.log({isAdult2});
+    console.log('isAdult', {isAdult2});
 
     // 10. Array.prototype.every() // is everyone 19 or older?
     const allAdults = friends.every(person => ((new Date()).getFullYear()) - person.year >= 19);
-    console.log({allAdults});
+    console.log('isEvery', {allAdults});
 
     // Find checks:
     const comments = [
@@ -134,10 +134,10 @@
     console.log(index);
 
     // 13. and then delete that comment from the array
-    const newComments = comments.splice(index, 1);
+     comments.splice(index, 1); // mutates comments array
     const newComments2 = comments.slice(0, index)
                                 .concat(comments.slice(index + 1))
-    console.log(newComments)
+    console.log(comments)
     console.log(newComments2)
   </script>
 </body>
