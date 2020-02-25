@@ -61,7 +61,7 @@ class App extends React.Component {
                         <img src={this.state.dataURI} />
 
                         <span className={this.getRemainingChars() <= 0 ? 'text-danger' : ''}>
-                            {this.getRemainingChars()}
+                            {this.getRemainingChars() <= 0 ? 'Too Long! ' : ''}{this.getRemainingChars()}
                         </span>
                         <button 
                         className='btn btn-primary' 
