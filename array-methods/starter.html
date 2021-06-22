@@ -24,7 +24,7 @@
       { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
       { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
     ];
-    const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
+    
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
 
@@ -46,25 +46,26 @@
 
     // 6. create a list of inventors that lived for some period in the 1800s
 
-
+    const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
 
-    // 8. Reduce Exercise
-    // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    // 8. Reduce Exercise
+    // Sum up the instances of each string in the data array above
+    
 
 
 
     // Some, Every checks:
-    const people = [
+    const person = [
       { name: 'Wes', year: 1988 },
       { name: 'Kait', year: 1986 },
       { name: 'Irv', year: 1970 },
       { name: 'Lux', year: 2015 }
     ];
-    // use the people object for the next two:
+    // use the person array for the next two:
     // 9. Array.prototype.some() // is at least one person 19 or older?
 
 
@@ -79,14 +80,14 @@
       { text: 'Is that a typo?', id: 123523 },
       { text: 'Almost there!', id: 542328 }
     ];
-    // use the comments object for the next ones:
+    // use the comments array for the next ones:
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
     // 11. find the comment with the ID of 823423
 
 
     // Array.prototype.findIndex()
-    // 12.Find the comment with the ID of 123523
+    // 12.Find the index of the comment with the ID of 123523
 
 
     // 13. and then delete that comment from the array
