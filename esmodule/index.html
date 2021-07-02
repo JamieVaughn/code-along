@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ES Modules</title>
+</head>
+<body>
+  <h1>ECMASscript Modules</h1>
+
+  <output id="one"></output>
+  <hr>
+  <output id="two"></output>
+
+  <script type="module">
+    import {someVar, someFunc} from './module1.js'
+    const result = someVar + someFunc()
+    document.querySelector('#one').innerHTML = result
+    console.log(result) // "Some data for output - 1"
+  </script>
+
+  <script type="module">
+    import {someVar, someFunc} from './module2.js'
+    const result = someVar + someFunc()
+    document.querySelector('#two').innerHTML = result
+    console.log(result) // "Some data for output - 2"
+  </script>
+</body>
+</html>
