@@ -139,6 +139,40 @@
                                 .concat(comments.slice(index + 1))
     console.log(comments)
     console.log(newComments2)
+
+    // Chaining:
+    const cities = [
+      { city: "New York", population: 8538000, established: 1624},
+      { city: "Denver", population: 683000, established: 1858},
+      { city: "Seattle", population: 704000, established: 1851},
+      { city: "San Fransisco", population: 865000, established: 1776},
+    ]
+
+    // 14. Largest Cities:  Return the cities with population over 8,000,000
+    const largeCities = locations.filter( location => location.population > 800000) //returns array subset
+
+    // 15. Total Pop: Calculate the total population of all cities
+    const totalPop = locations.reduce( (acc, item) => {
+      return acc + item.population
+    }, 0)
+
+    // 16. New Cities: Return the cities established in the 1800s or later
+    const newCities = locations.filter( city => city.established >= 1800 )
+
+    // 17. List New Cities Pop: Return an array of the populations of all the new Cities
+    const newCitiesPopulation = newCities.map( city => city.population )
+
+    // 18. Avg New Cities Pop: Calculate the average population of all the new Citiies
+    const averageNewCityPop = newCitiesPopulation.reduce( (acc, city) => acc + city ) / newCitiesPopulation.length
+
+    // 19. Find the intersection of the new Cities and Largest Cities
+    const intersection = largeCities.filter(city => newCities.includes(city))
+
+    console.log(largeCities)
+    console.log(newCities)
+    console.log(newCitiesPopulation)
+    console.log(averageNewCityPop)
+    console.log(intersection)
   </script>
 </body>
 </html>

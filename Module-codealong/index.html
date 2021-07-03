@@ -6,70 +6,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ECMAScript Modules</title>
 </head>
-<body>
-  <h1>ECMAScript Module Pattern</h1>
-  <output id="one"></output><p></p>
-  <output id="two"></output>
+  <body>
+    <h1>ECMAScript Module Pattern</h1>
+    <output id="one"></output><p></p>
+    <output id="two"></output>
 
-  <hr>
+    <hr>
 
-  <h1>Closures</h1>
+    <h1>Closures Pattern</h1>
+    <button id="btn-one">One</button>
+    <button id="btn-two">Two</button>
 
-  <button id="btn-one">One</button>
-  <button id="btn-two">Two</button>
+    <hr>
 
+    <!-- Modules code -->
+    <script src="module2.js" type="module"></script>
+    <script src="module1.js" type="module"></script>
+    <script type="module">
+      import {someFunc} from './module1.js'
+      import {anotherFunc} from './module2.js'
+      let one = document.querySelector('#one')
+      let two = document.querySelector('#two')
 
-  <!-- Modules code -->
-  <script src="module2.js" type="module"></script>
-  <script src="module1.js" type="module"></script>
-  <script type="module">
-    import {someFunc} from './module1.js'
-    import {anotherFunc} from './module2.js'
-    let one = document.querySelector('#one')
-    let two = document.querySelector('#two')
+      one.innerHTML = someFunc()
+      two.innerHTML = anotherFunc()
+    </script>
 
-    one.innerHTML = someFunc()
-    two.innerHTML = anotherFunc()
-  </script>
+    <!-- Closures code -->
+    <script>
+      let btnOne = document.querySelector('#btn-one')
+      let btnTwo = document.querySelector('#btn-two')
 
-  <!-- Closure code -->
-  <script>
-    let btnOne = document.querySelector('#btn-one')
-    let btnTwo = document.querySelector('#btn-two')
+      // Closure
+      function updateClicks(){
+        // Private vars
+        let clicks = {}
+        let factor = 2
 
-    // Closure
-    function updateClicks(){
-      // Private vars
-      let clicks = {}
-      let myVar = 9
-      let factor = 2
-      
-      //public API
-      return function reportClicks(id) {
-        clicks[id] = (clicks[id] ?? 0) + (id === 'btn-one' ? 1 : 2)
-        return [
-          id, 
-          clicks
-        ]
-      }
-    }
-
-    // Create two independent, parallel closures instances
-    const module1 = updateClicks()
-    const module2 = updateClicks()
-
-    Array(btnOne, btnTwo).forEach(btn => {
-      btn.addEventListener('click', e => {
-        if(e.shiftKey) {
-          console.log(...module2(e.target.id))
-        }else {
-          console.log(...module1(e.target.id))
+        //public API
+        return function reportClicks(id) {
+          clicks[id] = (clicks[id] ?? 0) + (id === 'btn-one' ? 1 : factor)
+          return [
+            id, 
+            clicks
+          ]
         }
+      }
+
+      // Create two independent, parallel closures instances
+      const module1 = updateClicks()
+      const module2 = updateClicks()
+
+      Array(btnOne, btnTwo).forEach(btn => {
+        btn.addEventListener('click', e => {
+          if(e.shiftKey) {
+            console.log(...module2(e.target.id))
+          } else {
+            console.log(...module1(e.target.id))
+          }
+        })
       })
-    })
-  </script>
-
-
-
-</body>
+    </script>
+  </body>
 </html>
