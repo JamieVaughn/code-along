@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+    
+</head>
+<body>
+    <h1>Keyframes Loading Spinners</h1>
+
+    <div class="wrapper">
+        <label for="radar">Radar</label>
+        <input type="checkbox" id="radar">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <label for="flat">Flat</label>
+        <input type="checkbox" id='flat'>
+        <div class="flat spinner"></div>
+    </div>
+
+    <div class="wrapper">
+        <label for="coin">Coin</label>
+        <input type="checkbox" id='coin'>
+        <svg width='50px' height='50px' viewBox='0 0 50 50'>
+            <circle cx='25' cy='25' r='15' />
+            <animateTransform attributeName='transform' dur='0.2s' type='scale'
+            values='0.1,1; 1.1,1; 0.1,1;' repeatCount='indefinite'/>
+            <animate attributeName="fill" values='violet;lime;violet;' 
+            dur='.1s' repeatCount='indefinite'/>
+        </svg>
+    </div>
+
+    <div class="wrapper">
+        <label>Starburst: </label>
+        <button id='fetch'>
+            Fetch Some Data
+        </button>
+        <svg id='starburst' width='50px' height='50px' viewBox='0 0 50 50'>
+            <circle cx='25' cy='25' r='15' fill="none" stroke='blue' stroke-width='10' stroke-dasharray="1,0,2.1"/>
+            <animateTransform attributeName='transform' dur='2s' type='rotate'
+                from="0 0 0" to="360 0 0"  repeatCount='indefinite'/>
+        </svg>
+    </div>
+    <h1 id='fetched-data' class='hidden'>This is the fetched data</h1>
+    
+    <script>
+    document.querySelector('#fetch').addEventListener('click', function(){
+        document.querySelector('#starburst').classList.add('visible')
+        setTimeout(function(){
+                document.querySelector('#starburst').classList.remove('visible')
+                document.querySelector('#fetched-data').classList.add('visible')
+    }, 3000)
+})
+            
+
+    </script>
+</body>
+</html>
