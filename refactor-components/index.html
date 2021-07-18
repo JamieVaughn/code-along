@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React Component Refactoring</title>
+    <!-- https://reactjs.org/docs/cdn-links.html -->
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel" src="index.js"></script>
+    <!-- <script type="text/babel" src="refactor.js"></script> -->
+    <style>
+      .centered {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .btn {
+        margin: 4px;
+        padding: 1rem;
+        font-size: 1.5rem;
+        background-color: white;
+        color: dodgerblue;
+        border: 3px solid dodgerblue;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .btn:active {
+        background-color: aliceblue;
+      }
+      .btn[disabled] {
+        filter: sepia(80%) blur(1px);
+        cursor: not-allowed
+      }
+      hr {
+          margin: 1rem 0;
+          width: 100%;
+          height: 2px;
+          border:none;
+          background-image: linear-gradient(to right, white 3%, black, white 97%);
+      }
+    </style>
+</head>
+<body class='centered'>
+    <!-- Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React. -->
+      <h1>React Component Refactoring Challenge</h1>
+      <hr>
+      <h2>Component 0</h2>
+      <div id="comp0"></div>
+      <hr>
+      <h2>Component 1</h2>
+      <div id="comp1"></div>
+      <hr>
+      <h2>Component 2</h2>
+      <div id="comp2"></div>
+      <hr>
+      <h2>Component 3</h2>
+      <div id="comp3" ></div>
+      <hr>
+      <h2>Component 4</h2>
+      <div id="comp4"></div> 
+      <hr>
+</body>
+</html>
