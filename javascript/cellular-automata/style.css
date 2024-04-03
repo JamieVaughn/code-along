@@ -1,0 +1,32 @@
+:root {
+  --cols: 50;
+  --rows: 50;
+  --side: 8px;
+  --gap: 1px;
+}
+
+.cells {
+  width: calc( calc(var(--side) + var(--gap)) * var(--cols) );
+  border: 3px solid dodgerblue;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--side));
+  grid-template-rows: repeat(var(--rows), var(--side));
+  grid-gap: var(--gap);
+}
+
+.cells > div {
+  width: var(--side);
+  height: var(--side);
+}
+
+.dead {
+  background-color: #f1f1f1;
+}
+
+.live {
+  background-color: darkred;
+}
+
+.live {
+  background-color: linear-gradient(crimson, cyan, darkorchid);
+}
