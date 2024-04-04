@@ -1,4 +1,6 @@
 // https://natureofcode.com/cellular-automata/
+// https://www.youtube.com/watch?v=Ggxt06qSAe4
+// https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
 // Save important DOM nodes
 const grid = document.querySelector('.cells')
 const showIter = document.querySelector('.iteration')
