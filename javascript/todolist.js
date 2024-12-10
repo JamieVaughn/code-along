@@ -13,6 +13,7 @@ let todoList = [
 ]
 const replaceTodo = (todo, position) => {
   todoList[0].splice(position, 1, todo)
+  // todoList[0].with(position, todo) // alternative replacement approach
   return todoList
 }
 function todosLeft() {
