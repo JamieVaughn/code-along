@@ -1,67 +1,69 @@
-// https://natureofcode.com/cellular-automata/
-// https://www.youtube.com/watch?v=Ggxt06qSAe4
-// https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
-// Save important DOM nodes
-const grid = document.querySelector('.cells')
-const showIter = document.querySelector('.iteration')
 // declare setup variables
 const cols = 100
 const limit = 100
-var iter = Infinity
-const ruliad = {
-  '000': 0,
-  '001': 1,
-  '010': 0, // 1 cool
-  '100': 1,
-  '101': 0, // boring pillars
-  '110': 1,
-  '011': 1,
-  '111': 0,
+let playing = false
+const grid = document.querySelector('.cells')
+const showIter = document.querySelector('.iteration')
+const toggle = document.querySelector('.toggle')
+const step = document.querySelector('.step')
+const reset = document.querySelector('.reset')
+/* RULES: (8 conditions)
+  111   101   110   011   100   001   010   000
+  ◼◼◼ | ◼◻◼ | ◼◼◻ | ◻◼◼ | ◼◻◻ | ◻◻◼ | ◻◼◻ | ◻◻◻
+   ◻     ◻     ◼     ◼     ◼     ◼     ◻     ◻   <- output   */
+const rule = {
+  '111': 'dead', // 0,
+  '101': 'dead', // 0,
+  '110': 'live', // 1,
+  '011': 'live', // 1,
+  '100': 'live', // 1,
+  '001': 'live', // 1,
+  '010': 'dead', // 0,
+  '000': 'dead', // 0,
 }
-
 // Loop over first row of cols to append a div w/ its calls for each cell
 const initializeCells = () => {
   for (let cell = 0; cell < cols; cell++) {
-    const div = document.createElement('div')
-    div.setAttribute('class', Math.random() > .05 ? 'dead' : 'live')
-    // div.setAttribute('class', cell !== 50 ? 'dead' : 'live')
-    grid.appendChild(div)
+    let status = cell === (cols / 2) ? 'live' : 'dead'
+    grid.innerHTML += `<div class="${status}"></div>`
   }
 }
-
 initializeCells()
-// Save an array of the cells
-const lastRowCells = () => Array.from(document.querySelectorAll('.cells > div')).slice(-cols)
-// Setup interval
-setInterval(() => {
-  if(iter >= limit) {
-    return
-  } else {
-    let cells = lastRowCells()
-    iter += 1
-    showIter.innerText = 'Iteration: ' + iter
-    const state = cells.map((c, i, arr) => {
-      return [
-        // arr[i - 2] && arr[i - 2].classList?.contains('alive'),
-        !arr[i - 1] ? arr.at(-1).classList?.contains('live') : arr[i - 1].classList?.contains('live'),
-        c?.classList?.contains('live'),
-        !arr[i + 1] ? arr[0].classList?.contains('live') : arr[i + 1].classList?.contains('live'),
-        // arr[i + 2]?.classList?.contains('alive'),
-      ].map(el => !el ? 0 : 1).join('')
-    })
-    
-     /* RULES: 
-     Any live cell with 3 live neighbors => dead
-      Any dead cell with 2 live neighbors => live
-      Any live cell with 1 live neighbor => live
-      Any other dead OR live cell => dead */
-    cells.forEach((cell, i) => {
-      const div = document.createElement('div')
-      let status = cell.getAttribute('class')
-      let situation = state[i]
-      status = ruliad[situation] ? 'dead' : 'live'
-      div.setAttribute('class', status)
-      grid.appendChild(div)
-    })
+// Function to retreive an array of the latest cells as an array of 0s and 1s
+const lastRowCellsAsBinary = () => {
+  const divs = document.querySelectorAll('.cells > div')
+  const lastRow = Array.from(divs).slice(-cols)
+  const liveOrDead = lastRow.map(cell => cell.classList?.contains('dead') ? 0 : 1) 
+  return liveOrDead
+}
+// count grid rows to determine how many iterations have occured
+const getIteration = () => grid.querySelectorAll('.cells > div').length / cols
+const calculateNewRow = () => {
+  showIter.innerText = 'Iteration: ' + getIteration()
+  let cells = lastRowCellsAsBinary()
+  const neighbors = []
+  for(let i = 0; i < cells.length; i++) {
+    neighbors.push([cells[i-1] ?? 0, cells[i], cells[i+1] ?? 0])
   }
-}, 100)
+  const state = neighbors.flatMap(group => rule[group.join('')])
+  const nextRow = cells.map((_, index) => `<div class="${state[index]}"></div>`)
+  grid.innerHTML += nextRow.join('')
+}
+setInterval(() => { // Setup interval
+  if(!playing || getIteration() >= 100) return // early return or breakout return
+  calculateNewRow()
+}, 200)
+
+// Setup button event listeners
+toggle.addEventListener('click', e => {
+  playing = !playing
+  e.target.innerText = playing ? 'Stop' : 'Start'
+})
+step.addEventListener('click', () => calculateNewRow())
+reset.addEventListener('click', () => {
+  playing = false
+  toggle.innerText = 'Start'
+  grid.innerHTML = ''
+  initializeCells()
+  showIter.innerText = 'Iteration: 0'
+})

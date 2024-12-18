@@ -1,56 +1,21 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conway's Game of Life</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Cellular Automata</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src='ca.js' defer></script>
 </head>
 <body>
-  <h1>2D Cellular Automata</h1>
-
-  <button class='start'>Start</button>
-  <button class='resume' style="display: none;">Resume</button>
-  <button class='stop'>Stop</button>
-  <button class='restart'>Restart</button>
-  <output class="iteration"></output>
-
-  <div class="cells"></div>
-
-  <script src='script.js'></script>
-  <script>
-    let stopState = iter
-    const stopBtn = document.querySelector('.stop')
-    const start = document.querySelector('.start')
-    const resume = document.querySelector('.resume')
-    const restart = document.querySelector('.restart')
-    // clear cells 
-    const clearCells = () => grid.innerHTML = ''
-    start.addEventListener('click', e => {
-      iter = 0
-      stopState = Infinity
-      start.style.setProperty('display', 'none')
-      resume.style.setProperty('display', 'inline')
-    })
-    stopBtn.addEventListener('click', () => {
-      stopState = iter
-      iter = limit + 1
-    })
-    resume.addEventListener('click', () => {
-      if(stopState === Infinity) return
-      iter = stopState
-    })
-    restart.addEventListener('click', () => {
-      stopState = 0
-      iter = 0
-      clearCells()
-      initializeCells()
-      start.style.setProperty('display', 'inline')
-      resume.style.setProperty('display', 'none')
-    })
-  </script>
+  <div class="flex">
+    <h1>2D Cellular Automata</h1>
+    <button class='toggle'>Start</button>
+    <button class='step'>Step</button>
+    <button class='reset'>Reset</button>
+    <output class='iteration'></output>
+  </div>
+  <main class="cells"></main>
 </body>
 </html>

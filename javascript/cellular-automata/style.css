@@ -2,31 +2,27 @@
   --cols: 100;
   --rows: 100;
   --side: 8px;
-  --gap: 1px;
 }
-
 .cells {
-  width: calc( calc(var(--side) + var(--gap)) * var(--cols) );
+  width: calc(var(--side) * var(--cols));
   border: 3px solid dodgerblue;
   display: grid;
   grid-template-columns: repeat(var(--cols), var(--side));
   grid-template-rows: repeat(var(--rows), var(--side));
-  grid-gap: var(--gap);
+  > div {
+    width: var(--side);
+    height: var(--side);
+  }
 }
-
-.cells > div {
-  width: var(--side);
-  height: var(--side);
-}
-
 .dead {
-  background-color: #f1f1f1;
+  background-color: silver;
 }
-
 .live {
-  background-color: darkred;
+  background-color: seagreen;
+  /* background: linear-gradient(crimson, cyan, darkorchid); */
 }
-
-.live {
-  background-color: linear-gradient(crimson, cyan, darkorchid);
+.flex { 
+  display: flex; 
+  gap: 1rem; 
+  align-items: center;
 }
