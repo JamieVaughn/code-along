@@ -3,11 +3,6 @@
   --rows: 100;
   --side: 2px;
 }
-body {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
 .cells {
   margin: 0 auto;
   width: calc(var(--side) * var(--cols));
@@ -33,6 +28,13 @@ body {
   gap: 1rem; 
   align-items: center;
 }
+
+/* Extra styles for cloning.js alternate */
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 header {
   position: sticky;
   top: 0;
@@ -43,5 +45,5 @@ header {
   }
 }
 input {
-  margin-left: auto
+  margin-left: auto;
 }
