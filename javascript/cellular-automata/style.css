@@ -1,9 +1,15 @@
 :root {
-  --cols: 100;
+  --cols: 500;
   --rows: 100;
-  --side: 8px;
+  --side: 2px;
+}
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 .cells {
+  margin: 0 auto;
   width: calc(var(--side) * var(--cols));
   border: 3px solid dodgerblue;
   display: grid;
@@ -13,6 +19,7 @@
     width: var(--side);
     height: var(--side);
   }
+  margin-bottom: 5rem;
 }
 .dead {
   background-color: silver;
@@ -25,4 +32,16 @@
   display: flex; 
   gap: 1rem; 
   align-items: center;
+}
+header {
+  position: sticky;
+  top: 0;
+  background-color: blanchedalmond;
+  padding: 0.25rem 1rem;
+  h1 {
+    margin: 0;
+  }
+}
+input {
+  margin-left: auto
 }

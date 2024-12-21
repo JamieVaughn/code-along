@@ -1,6 +1,5 @@
 // declare setup variables
 const cols = 100
-const limit = 100
 let playing = false
 const grid = document.querySelector('.cells')
 const showIter = document.querySelector('.iteration')
