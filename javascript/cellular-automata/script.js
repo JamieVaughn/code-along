@@ -48,7 +48,7 @@ const lastRowCellsAsBinary = () => {
 // count grid rows to determine how many iterations have occured
 const getIteration = () => grid.querySelectorAll('.cells > div').length / cols
 const calculateNewRow = () => {
-  showIter.innerText = 'Iteration: ' + getIteration()
+  generations.innerText = 'Iteration: ' + getIteration()
   let cells = lastRowCellsAsBinary()
   const neighbors = []
   for(let i = 0; i < cells.length; i++) {
@@ -77,5 +77,5 @@ reset.addEventListener('click', () => {
   toggle.innerText = 'Start'
   grid.innerHTML = ''
   initializeCells()
-  showIter.innerText = 'Iteration: 0'
+  generations.innerText = 'Iteration: 0'
 })
