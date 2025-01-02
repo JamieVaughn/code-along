@@ -1,4 +1,5 @@
 // https://www.youtube.com/watch?v=L4u7Zy_b868
+// https://jason.today/falling-sand
 // declare setup variables
 const cols = 50
 let sandCount = 0
