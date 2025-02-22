@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syncing React Components</title>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    .highlight {
+      background-color: gold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Users</h2>
+  <div id="root"></div>
+  
+
+  <script type="text/babel">
+    function App() {
+      const [users, setUsers] = React.useState([
+        // {id: 0, name: 'Jared'},{id: 1, name: 'Dan'}
+      ])
+      const [name, setName] = React.useState('')
+      const [active, setActive] = React.useState(1)
+      const [error, setError] = React.useState(false)
+      const inputEl = React.useRef()
+
+      React.useEffect(() => {
+        console.log("Mounted/Updated - (runs every lifecycle)")
+      })
+      React.useEffect(() => {
+        console.log('Initial Render only - will only run once')
+      }, [])
+      React.useEffect(() => {
+        // Example of what not to do:
+        if(users.length){
+          // would run code related to users
+        } else if(name.length) {
+          // would run code related to name search
+        } else if(active > 3) {
+          // would run code related to active click
+        } else {
+          // would run some default code
+        }
+        console.log('This updates when any of the declared state updates')
+      }, [users, active, name])
+
+      React.useEffect(() => {
+        //...updates when users updates
+        return () => console.log("🚫 Unmount users"); // Similar to componentWillUnmount
+      }, [users])
+
+      React.useEffect(() => {
+        // Similar to componentDidUpdate (but only for `active`)
+        console.log('Send fetch then update Users')
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(resp => resp.json())
+        .then(data => {
+          console.log('Run on active click')
+          data.sort((a,b) => a > b ? 1 : -1)
+          setUsers(data)
+        })
+      }, [active])
+
+      const handleSearch = e => {
+        setName(e.target.value)
+        console.log('Search fn runs')
+      }
+
+      const handleAddUser = () => {
+        console.log('AddUser fn runs')
+        if(!users.filter(u => u.name == name).length) {
+          setUsers([
+            ...users,
+            {id: users.length + 1, name: inputEl.current.value}
+          ])
+        }
+      }
+      if(error) return <div>Sorry, there was an error</div>
+
+      return (
+        <>
+          <button onClick={() => setUsers([])}>Remove All users</button>
+          <button onClick={() => setError(true)}>Cause Error</button>
+          <br/>
+          <label htmlFor='add'>Add User: </label>
+          <input id='add' ref={inputEl} />
+          <button onClick={handleAddUser}>Submit</button>
+          <ul>
+            {users.length ? users.map(user => {
+              let matchStr = new RegExp(name, 'gi')
+              return !name || user.name.match(matchStr) ? (
+                <li key={user.id} onClick={() => setActive(user.id)}>
+                  <h5 className={user.id == active ? 'highlight' : ''}>{user.name}</h5>
+                </li>
+              ) : ''
+            }) : <div>There are no Users</div>
+          }  
+          </ul>
+          <label>Search User:</label>
+          <input onChange={handleSearch} />
+          <br/>
+          <output>{name}</output>
+        </>
+      )
+    }
+  
+    ReactDOM.render(<App />, document.getElementById('root'))
+  </script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refactoring React Components</title>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      .card > span {
+        font-size: 2.5rem;
+      }
+      .card {
+        cursor: pointer;
+        border: 1px solid dodgerblue;
+        border-radius: 2rem;
+        padding: 1rem;
+        display: inline-block;
+        user-select: none;
+      }
+      nav {
+        cursor: pointer;
+        width: fit-content;
+      }
+      nav li:hover {
+        background: rgba(30, 143, 255, 0.308);
+        border-radius: 1rem;
+      }
+      .fire {
+        filter: hue-rotate(280deg);
+      }  
+      .air {
+        filter: hue-rotate(150deg);
+      } 
+      .water {
+        filter: hue-rotate(100deg);
+      } 
+      .fluffykins {
+        filter: hue-rotate(180deg);
+      } 
+      </style>
+</head>
+<body>
+
+  <div id="root"></div>
+  <hr>
+  <!-- <h2>Component 0</h2>
+  <div id="comp0"></div>
+  <hr>
+  <h2>Component 1</h2>
+  <div id="comp1"></div>
+  <hr>
+  <h2>Component 2</h2>
+  <div id="comp2"></div>
+  <hr>
+  <h2>Component 3</h2>
+  <div id="comp3"></div>
+  <hr>
+  <h2>Component 4</h2>
+  <div id="comp4"></div>
+  <hr>
+  <div id='dragons'></div> -->
+
+  <script type="text/babel">
+  // Component Class to Hooks Refactor Demo
+  class TodoList extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        list: this.props.items
+      }
+      this.handleDelete = this.handleDelete.bind(this)
+    }
+    handleDelete(id) {
+      this.setState({list: this.state.list.filter(item => item.id !== id)})
+    }
+  render() {
+      return (
+        <>
+          <h3>Class</h3>
+          <ul>
+            {this.state.list.map(item => (
+              <li key={item.id}>{item.text} <span onClick={() => this.handleDelete(item.id)}> x</span></li>
+            ))}
+          </ul>
+        </>
+      );
+    }
+  }
+
+  const TodoListFn = props => {
+    const [list, setList] = React.useState(props.items)
+    const handleDelete = (id) => {
+      console.log(id)
+      setList(list.filter(item => item.id !== id))
+    } 
+    return (
+      <>
+        <h3>Fn</h3>
+        <ul>
+          {
+            list.map( item => {
+              return <li key={item.id}>{item.text}<span onClick={() => handleDelete(item.id)}> x</span></li>
+            })
+          }
+        </ul>
+      </>
+    )
+  }
+  
+  const myList = [
+    {id: 0, text: 'hello', option: 'option'},
+    {id: 1, text: 'js', option: 'config'},
+    {id: 2, text: 'css', option: 'name'},
+    {id: 3, text: 'html'},
+    {id: 4, text: 'react'},
+    {id: 5, text: 'redux'},
+  ]
+
+
+  TodoList.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.exact({
+      id: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+      option: PropTypes.oneOf(['option', 'config', 'invalid'])
+    })).isRequired
+  }
+
+  const MyRefComponent = props => {
+  let div = React.useRef(null)
+  let input = React.useRef(null)
+  return (
+    <div onClick={() => {
+      div.current = 'world'
+      console.log(div.current, input.current.value)
+    }}>
+      <div type="text" ref={div}>Hello</div>
+      <input type='text' ref={input} />
+    </div>
+  );
+}
+
+  // ReactDOM.render(<TodoList items={myList} />, document.getElementById('root'))
+  ReactDOM.render(<MyRefComponent />, document.getElementById('root'))
+
+
+  // Component Refactor Challenge
+  // Comp 0
+  const avatar = <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" width="128" height="128">
+  <mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36">
+    <rect width="36" height="36" rx="72" fill="white"></rect>
+  </mask>
+  <g mask="url(#mask__beam)">
+    <rect width="36" height="36" fill="#edb92e"></rect>
+    <rect x="0" y="0" width="36" height="36" transform="translate(1 7) rotate(63 18 18) scale(1)" fill="#ce1836" rx="36"></rect>
+    <g transform="translate(-7 3.5) rotate(3 18 18)">
+      <path d="M13,19 a1,0.75 0 0,0 10,0" fill="white"></path>
+      <rect x="11" y="14" width="1.5" height="2" rx="1" stroke="none" fill="white"></rect>
+      <rect x="23" y="14" width="1.5" height="2" rx="1" stroke="none" fill="white"></rect>
+    </g>
+  </g>
+</svg>
+ const Comp0 = (props) => {
+   return (
+    <div className="centered">{/* React components must have a single root node/element */}
+				<h1>A Simple React Component Example</h1>
+				<div className="form-group"> {/* `class` is reserved in JS, so className must be used */}
+					{avatar} { /* Notice no quotes ("") for the src expression */ }
+				</div>
+				<div className="form-group">
+					<label htmlFor="simpleInput">Simple Label: </label> 
+          {/* `for` is reserved in JS, so htmlFor must be used */}
+					<input type="text" className="form-control" id="simpleInput" />
+				</div>
+				<div className="form-group" style={{fontSize: '2rem'}}>
+          {/* style attribute requires double curly braces because the css is passed as an object & css rules must follow camelCase */}
+					<button type="button" className="btn" disabled={props.flag}>Submit</button> 
+          {/* Some form attributes use an expression to set true or false: they include disabled, required, checked and readOnly */}
+				</div>
+				<p className="help-block" dangerouslySetInnerHTML={{__html: 'I\'m some <span class="text-danger">dangerous</span> helper text.'}} />
+        {/* This inserts raw HTML and is also a self-closing tag */}
+			</div>
+   )
+ }
+ // Comp 2
+ class Comp2 extends React.Component {
+   constructor(props) {
+     super(props)
+     this.state = {
+      search: ''
+     }
+     this.handleChange = this.handleChange.bind(this)
+     this.handleSubmit = this.handleSubmit.bind(this)
+   }
+   handleChange(e){
+    this.setState({search: e.target.value})
+   } 
+   handleSubmit(e) {
+     e.preventDefault()
+    console.log(`You searched for ${this.state.search}`)
+   }
+   render() {
+     return (
+       <form onSubmit={this.handleSubmit}>
+       <label className="search">
+         <input placeholder="Search" value={this.state.search} onChange={this.handleChange} />
+         <button>
+           <img 
+             src="https://unicons.iconscout.com/release/v0.0.4/svg/search.svg" 
+             style={{height: "16px", width: 'auto'}}
+           />
+         </button> 
+       </label>
+       </form>
+     )
+   }
+ }
+
+ // Comp 3
+class Comp3 extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    if(this.props.type === 'circle') {
+      return (<div>
+          <svg width="50px" height="50px" viewBox="0 0 50 50">
+            <circle
+              fill="none"
+              stroke="dodgerblue"
+              strokeWidth="4"
+              strokeDasharray="45,40"
+              cx="25"
+              cy="25"
+              r="15"
+            />
+            <animateTransform
+              attributeName="transform"
+              dur="0.5s"
+              type="rotate"
+              from="0 0 0 "
+              to="360 0 0"
+              repeatCount="indefinite"
+            />
+          </svg>
+        </div>)
+    } else {
+      return (
+        <div className="bouncing-bar">
+          <svg width="60px" height="13px" viewBox="0 0 50 10">
+            <line
+              x1="5"
+              y1="5"
+              x2="25"
+              y2="5"
+              stroke="crimson"
+              strokeWidth="10px"
+              strokeLinecap="round"
+              strokeDasharray="50,7.5"
+            />
+            <animateTransform
+              attributeName="transform"
+              type="translateX(0)"
+              values="-5;30;-5"
+              dur="1s"
+              repeatCount="indefinite"
+            />
+          </svg>
+        </div>
+      )
+    }
+
+  }
+}
+
+
+  // Comp 4
+  const Comp4 = props => {
+    const [clicks, setClicks] = React.useState(0);
+
+    const HandleClick = () =>{
+        setClicks(clicks + props.factor*1)
+    }
+
+    return (
+        <button
+        className="btn"
+        onClick={HandleClick}>
+            {clicks}
+        </button>
+    )
+}
+
+ReactDOM.render(<Comp0 flag={true}/>, document.getElementById('comp0'))
+ReactDOM.render(<Comp2 />, document.getElementById('comp2'))
+ReactDOM.render(<Comp3 />, document.getElementById('comp3'))
+ReactDOM.render(<Comp4 factor={1} />, document.getElementById('comp4'))
+
+// Making Dragon Clicker in React
+function Dragons ({types}) {
+  const [dragons, setDragons] = React.useState(types.map((t, idx) => ({id: idx, type: t, clicks: 0})))
+  const [current, setCurrent] = React.useState(dragons[0])
+
+  const increment = (dragon) => {
+    setDragons(dragons.map(d => {
+      if(d.type === dragon.type) d.clicks++
+      return d
+    }))
+  }
+  const changeDragon = id => setCurrent(dragons.find(d => d.id == id))
+  // const getDragon = () => dragons.find(d => d.id == current)
+  return (
+    <div>
+      <nav>
+        <ul>
+          {dragons.map((dragon, id) => (
+            <li key={id} onClick={() => changeDragon(id)}>{dragon.type}</li>)
+          )}
+        </ul>
+      </nav>
+      <div className="card" onClick={() => increment(current)}>
+        <h2>{current.type}</h2>
+        <span className={current.type}>🐉</span>
+        <button>{current.clicks}</button>
+      </div>
+    </div>
+  )
+}
+ReactDOM.render(<Dragons types={['water', 'fire', 'air', 'fluffykins']} />, document.getElementById('dragons'))
+
+
+  </script>
+</body>
+</html>

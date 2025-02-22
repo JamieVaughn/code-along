@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal Example</title>
+  <style>
+    .modalMask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(255, 255, 255, 0.85);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 350ms;
+    }
+    .modalOpacity {
+      opacity: 1;
+      display: flex;
+      transition: opacity 350ms;
+    }
+    .brandModal {
+      margin: 1.5rem;
+      background: #f0f0f0;
+      border-radius: 15px;
+      padding: 3rem;
+      font-size: 18px;
+      position: relative;
+      line-height: 2rem;
+    }
+    .close {
+      font-size: 24px;
+      line-height: 24px;
+      color: white;
+      background-color: #1d2559;
+      position: absolute;
+      right: -1rem;
+      top: -1rem;
+      padding: 1rem;
+      border-radius: 35px;
+      cursor: pointer;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+    <h1>Modal</h1>
+
+    <button>show modal</button>
+
+    <div class='modalMask'>
+      <div class='brandModal'>
+        <div class="close" onclick='closeModal()'>╳</div>
+        <main>
+          <h4>Message Header</h4>
+          <p>Message Body</p>
+          <button>Submit ›</button>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      function closeModal() {
+        let modal = document.querySelector('.modalMask')
+        modal.classList.remove('modalOpacity')
+        // setTimeout(() => modal.style.display = 'none', 10);
+      }
+      document.querySelector('button').addEventListener('click', () => {
+        let modal = document.querySelector('.modalMask')
+        modal.classList.add('modalOpacity')
+
+        // modal.style.display = 'flex'
+        // setTimeout(() => modal.classList.add('modalOpacity'), 10);
+      })
+    </script>
+</body>
+</html>

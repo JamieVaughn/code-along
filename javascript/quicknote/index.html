@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Note</title>
+  <style>
+      *,
+      *:before,
+      *:after {box-sizing: border-box;}
+      main {
+          max-width: 800px;
+          margin:0 auto;
+      }
+      .new-note-form {
+          margin-bottom: 15px;
+      }
+      .new-note-content {
+          width:100%;
+          display: block;
+          font-size: 1.3em;
+      }
+      .notes {
+          list-style-type: none;
+          margin:0;
+          padding: 0;
+      }
+      .note {
+          display: inline-block;
+          width: 250px;
+          margin-right: 20px;
+          margin-bottom: 20px;
+          padding:10px;
+          list-style-type: none;
+          background-color: #cde;
+      }
+      .note-date {
+          font-size:0.7em;
+          margin-bottom: 10px;
+          display: block;
+      }
+  </style>
+</head>
+<body>
+  <h1>Quick Note</h1>
+  <main>
+    <form action="" id='new-note-form' class='new-note-form'>
+      <label for="new-note-content">Add New Note: 
+        <input id="new-note-content" class="new-note-content" type="text">
+      </label>
+    </form>
+    <ul id="notes" class="notes">
+
+    </ul>
+  </main>
+  <script src='index.js'></script>
+</body>
+</html>

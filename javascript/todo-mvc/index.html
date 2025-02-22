@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo MVC App</title>
+</head>
+<body>
+  <h1>Todo MVC App</h1>
+  <input type="text" placeholder="Enter a todo">
+  <ul>
+
+  </ul>
+
+  <script>
+    const model = {
+      todos: ['learn html', 'learn css', 'learn js'],
+      appendTodo: (todo) => model.todos.push(todo)
+    }
+
+    const controller = {
+      getTodos: () => model.todos,
+      init: () => {
+        view.init()
+        view.render()
+      },
+      addTodo: (todo) => model.appendTodo(todo)
+    }
+
+    const view = {
+      display: document.querySelector('ul'),
+      input: document.querySelector('input'),
+      init: () => {
+        // setup event listener
+        view.input.addEventListener('keydown', (e) => {
+          console.log(e)
+          if(e.key === 'Enter') {
+            //add the value to the model
+            controller.addTodo(e.target.value)
+            view.render()
+          }
+        })
+      },
+      template: (todos) => todos.map(todo => `<li>${todo}</li>`).join(''),
+      render: () => view.display.innerHTML = view.template(controller.getTodos())
+    }
+
+    controller.init()
+  </script>
+</body>
+</html>

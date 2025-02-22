@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thinking in React</title>
+  <!-- https://reactjs.org/docs/thinking-in-react.html -->
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    main {
+      border: 1px solid dodgerblue;
+      padding: 1rem;
+    }
+    .flex {
+      display: flex;
+      justify-content: space-around;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .centered {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Thinking in React</h1>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    
+    // State
+    // search input
+    // checkbox input
+    // ** list of products could be state if fetched from server (otherwise hardcoded)
+
+    function FilterableProductTable() {
+      const [checked, setChecked] = React.useState(false)
+      const [search, setSearch] = React.useState('')
+      // console.log('top', search, checked)
+      return (
+        <main>
+          <SearchBar 
+           checked={checked}
+           checkSetter={setChecked}
+           search={search}
+           searchSetter={setSearch}
+           />
+          <ProductTable search={search} checked={checked}/>
+        </main>
+      )
+    }
+
+    function SearchBar({search, searchSetter, checked, checkSetter}) {
+      // console.log('search', search, checked)
+      const handleSearch = e => {
+        searchSetter(e.target.value)
+      }
+      const handleCheck = e => {
+        checkSetter(!checked)
+        // console.log('checkbox', e.target.value)
+      }
+      return (
+        <>
+          <input value={search} onChange={handleSearch} type="text" placeholder='Search..' />
+          <label htmlFor="checkbox">
+            <input value={checked} onChange={handleCheck} type="checkbox" id='checkbox' /> 
+          Only show products in stock</label>
+        </>
+      )
+    }
+
+    function ProductTable({search, checked}) {
+      const sportingGoods = [{name: 'Football', price: 10, stocked: true}, {name: 'Baseball', price: 7, stocked: false}, {name: 'Basketball', price: 17, stocked: true}]
+      const electronics = [{name: 'iPhone', price: 500, stocked: true}, {name: 'iPad', price: 700, stocked: false}]
+      const titles =['Sporting Goods', 'Electronics']
+      // console.log('products', search, checked)
+      return (
+        <div>
+          <header className='flex'>
+            <h3>Name</h3>
+            <h3>Price</h3>
+          </header>
+          <ProductCategoryRow title={titles[0]} />
+          <ProductRow list={sportingGoods} search={search} checked={checked} />
+          <ProductCategoryRow title={titles[1]} />
+          <ProductRow list={electronics} search={search} checked={checked} />
+        </div>
+      )
+    }
+
+    function ProductCategoryRow ({title}) {
+      return (
+        <h4 className='centered'>{title}</h4>
+      )
+    }
+
+    function ProductRow ({search, checked, list}) {
+      return (
+        <ul>
+          {
+            list.filter(item => checked ? item.stocked : true)
+                .filter(item => item.name.match(search))
+                .map((item, index) => (
+                <li key={index} className='grid'>
+                  <span>{item.name}</span> 
+                  <span>${item.price}</span>
+                </li>
+              ))
+          }         
+        </ul>
+      )
+    }
+
+    ReactDOM.render(<FilterableProductTable />, document.getElementById('root'))
+  </script>
+</body>
+</html>

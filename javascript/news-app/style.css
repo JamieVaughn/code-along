@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+nav {
+  display: flex;
+  background-color: orangered;
+  padding: 1rem;
+}
+h1 {
+  margin: 0;
+  margin-right: auto;
+}
+h2 {
+  padding: 0 1rem;
+}
+.stories {
+  text-transform: capitalize;
+}
+nav button {
+  border: none;
+  background: none;
+  text-decoration: underline;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+nav button:hover {
+  border-color: black;
+}
+main ol {
+  margin-left: 1rem;
+}
+main li {
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.75rem;
+}
+main li button {
+  border: none;
+  color: teal;
+  background-color: white;
+}
